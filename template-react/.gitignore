@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Personalized client demos (real photos/names) never get committed here.
+src/assets/wok/
+src/content.local.js

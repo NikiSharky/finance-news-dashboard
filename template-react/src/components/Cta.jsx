@@ -1,13 +1,24 @@
 import { motion, useReducedMotion } from "framer-motion";
 import Reveal from "./Reveal.jsx";
 
-export default function Cta({ title, text, phone, phoneHref, address, hours, kitchen }) {
+export default function Cta({ title, text, phone, phoneHref, address, hours, kitchen, photo }) {
   const reduceMotion = useReducedMotion();
 
   return (
     <section id="reservieren">
       <div className="container">
-        <Reveal className="cta">
+        <Reveal
+          className="cta"
+          style={
+            photo
+              ? {
+                  backgroundImage: `radial-gradient(90% 140% at 15% 0%, rgba(201,162,39,.30), transparent 60%), linear-gradient(150deg, rgba(36,29,21,.88), rgba(23,19,14,.94) 70%), url(${photo})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center 30%",
+                }
+              : undefined
+          }
+        >
           <div>
             <span className="eyebrow">Tisch reservieren</span>
             <h2 style={{ marginTop: ".6rem" }}>{title}</h2>
