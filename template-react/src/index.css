@@ -1,0 +1,135 @@
+:root {
+  --oil: #17130e;
+  --oil-soft: #1f1a13;
+  --card: #241d15;
+  --card-line: #3a2e20;
+  --cream: #ede3d0;
+  --cream-dim: #c9bba0;
+  --brass: #c9a227;
+  --brass-soft: #a8862a;
+  --forest: #5c6e52;
+  --rust: #9c4a2e;
+
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Karla", "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", "Courier New", monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--oil);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+::selection {
+  background: var(--brass);
+  color: var(--oil);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-wrap: balance;
+  margin: 0;
+  color: var(--cream);
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 64px);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+section {
+  padding: clamp(80px, 12vh, 150px) 0;
+}
+
+.section-head {
+  max-width: 640px;
+  margin-bottom: clamp(40px, 6vw, 72px);
+}
+
+.section-head h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-top: 0.5rem;
+}
+
+.section-head p {
+  color: var(--cream-dim);
+  margin-top: 1.1rem;
+  font-size: 1.02rem;
+  max-width: 52ch;
+}
+
+.btn {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-decoration: none;
+  padding: 0.95em 1.7em;
+  border-radius: 2px;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--brass);
+  color: var(--oil);
+  box-shadow: 0 8px 24px -8px rgba(201, 162, 39, 0.55);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--cream);
+  border: 1px solid var(--card-line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

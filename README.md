@@ -18,13 +18,20 @@ Business-Setup für Website-Relaunches an kleine/mittlere Betriebe in der DACH-R
 - [`demos/gasthof-lindenwirt/`](demos/gasthof-lindenwirt/index.html) — Fertig ausgefülltes
   Beispiel der Basis-Vorlage für die Zielgruppe „Gasthaus/Gasthof" (fiktiver Betrieb, ohne
   echte Kundendaten) — gut zum direkten Zeigen bei der Akquise.
+- [`template-react/`](template-react/README.md) — **React + Framer Motion Version der
+  Basis-Vorlage.** Gleicher Inhalt/gleiches Design wie `demos/_template/`, aber mit
+  Framer Motion für Scroll-Reveals, animierten Tab-Wechsel (`layoutId`) und Hover-States.
+  Braucht Node/npm und einen Build-Schritt — gedacht für die echte Kunden-Website nach
+  Auftragserteilung, nicht für schnelle Akquise-Demos (dafür `demos/_template/` nehmen,
+  läuft ohne Build als einzelne Datei überall).
 - [`docs/leads-graz.md`](docs/leads-graz.md) — Recherche-Ergebnis zu den aktuellen
   Web-Präsenzen der Graz-Gastro-Lead-Liste, priorisiert nach Akquise-Potenzial.
 
-Alle Demos: reines HTML/CSS/JS, keine Build-Abhängigkeiten — `index.html` einfach im Browser
-öffnen oder per Static Hosting deployen. Personalisierte Entwürfe mit echten Fotos/Namen
-konkreter Zielbetriebe (z. B. für Kaltakquise) gehören **nicht** in dieses öffentliche Repo,
-solange der Betrieb nicht Kunde ist — die werden lokal erstellt und direkt übergeben.
+Die `demos/`-Vorlagen: reines HTML/CSS/JS, keine Build-Abhängigkeiten — `index.html` einfach
+im Browser öffnen oder per Static Hosting deployen. Personalisierte Entwürfe mit echten
+Fotos/Namen konkreter Zielbetriebe (z. B. für Kaltakquise) gehören **nicht** in dieses
+öffentliche Repo, solange der Betrieb nicht Kunde ist — die werden lokal erstellt und direkt
+übergeben.
 
 ## Nächste Schritte
 
