@@ -9,12 +9,22 @@ Business-Setup für Website-Relaunches an kleine/mittlere Betriebe in der DACH-R
 
 ## Inhalt dieses Repos
 
-- [`demos/gasthof-lindenwirt/`](demos/gasthof-lindenwirt/index.html) — Referenz-Demo für die
-  Zielgruppe „Gasthaus/Gasthof": moderne, animierte One-Page-Website (fiktiver Betrieb) als
-  Vorlage für Pitches. Reines HTML/CSS/JS, keine Build-Abhängigkeiten — einfach die
-  `index.html` im Browser öffnen oder per Static Hosting deployen.
+- [`demos/_template/`](demos/_template/index.html) — **Basis-Vorlage für neue Demos.**
+  Enthält das komplette Design-System (dunkle, warme Palette, Scroll-Reveal-Animation,
+  Hero-Zoom, Tabs) mit `[eckigen Klammern]` als Platzhaltern statt echten Kundendaten. Für
+  einen neuen Betrieb: Datei kopieren, Platzhalter ersetzen, echte Fotos einbauen (siehe
+  Kommentare in der Datei). Menü-Tabs laufen über reines CSS (Radio-Buttons statt JS) und
+  funktionieren daher auch dort, wo Skripte nicht ausgeführt werden.
+- [`demos/gasthof-lindenwirt/`](demos/gasthof-lindenwirt/index.html) — Fertig ausgefülltes
+  Beispiel der Basis-Vorlage für die Zielgruppe „Gasthaus/Gasthof" (fiktiver Betrieb, ohne
+  echte Kundendaten) — gut zum direkten Zeigen bei der Akquise.
 - [`docs/leads-graz.md`](docs/leads-graz.md) — Recherche-Ergebnis zu den aktuellen
   Web-Präsenzen der Graz-Gastro-Lead-Liste, priorisiert nach Akquise-Potenzial.
+
+Alle Demos: reines HTML/CSS/JS, keine Build-Abhängigkeiten — `index.html` einfach im Browser
+öffnen oder per Static Hosting deployen. Personalisierte Entwürfe mit echten Fotos/Namen
+konkreter Zielbetriebe (z. B. für Kaltakquise) gehören **nicht** in dieses öffentliche Repo,
+solange der Betrieb nicht Kunde ist — die werden lokal erstellt und direkt übergeben.
 
 ## Nächste Schritte
 
