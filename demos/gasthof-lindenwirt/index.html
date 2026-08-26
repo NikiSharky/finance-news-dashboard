@@ -79,6 +79,10 @@
   html.js-reveal .reveal.is-visible{opacity:1; transform:translateY(0);}
   .reveal-stagger > *{transition-delay:calc(var(--i,0) * 90ms);}
 
+  /* A touch more motion for the hero's own entrance. */
+  html.js-reveal .hero .reveal{transform:translateY(40px) scale(.98);}
+  html.js-reveal .hero .reveal.is-visible{transform:translateY(0) scale(1);}
+
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto;}
     html.js-reveal .reveal{opacity:1; transform:none; transition:none;}
@@ -214,17 +218,26 @@
   }
   .stat span{font-size:.82rem; color:var(--cream-dim); text-transform:uppercase; letter-spacing:.08em;}
 
-  /* ---------- menu ---------- */
+  /* ---------- menu ----------
+     Pure-CSS tabs: radio inputs + labels, no JS required to switch. */
+  .menu-radio{position:absolute; opacity:0; width:1px; height:1px; pointer-events:none;}
   .menu-tabs{display:flex; gap:.6rem; margin-bottom:2.6rem; flex-wrap:wrap;}
   .menu-tab{
     font-family:var(--font-mono); font-size:.76rem; letter-spacing:.06em; text-transform:uppercase;
     padding:.6em 1.1em; border:1px solid var(--card-line); border-radius:20px; cursor:pointer;
-    background:transparent; color:var(--cream-dim); transition:all .25s ease;
+    background:transparent; color:var(--cream-dim); transition:all .25s ease; user-select:none;
   }
-  .menu-tab.active, .menu-tab:hover{border-color:var(--brass); color:var(--brass);}
+  .menu-tab:hover{border-color:var(--brass-soft); color:var(--cream);}
 
   .menu-group{display:none;}
-  .menu-group.active{display:block;}
+  #tab-vorspeisen:checked ~ .menu-group#vorspeisen,
+  #tab-hauptspeisen:checked ~ .menu-group#hauptspeisen,
+  #tab-nachspeisen:checked ~ .menu-group#nachspeisen{display:block;}
+  #tab-vorspeisen:checked ~ .menu-tabs label[for="tab-vorspeisen"],
+  #tab-hauptspeisen:checked ~ .menu-tabs label[for="tab-hauptspeisen"],
+  #tab-nachspeisen:checked ~ .menu-tabs label[for="tab-nachspeisen"]{
+    border-color:var(--brass); color:var(--brass);
+  }
   .menu-item{
     display:grid; grid-template-columns:1fr auto; gap:.4rem 1.4rem; align-items:baseline;
     padding:1.35rem 0; border-bottom:1px dashed var(--card-line);
@@ -330,13 +343,13 @@
       <polygon points="0,220 0,180 220,120 420,190 640,110 860,195 1050,150 1200,190 1200,220" fill="#171310"/>
     </svg>
     <div class="container hero-inner">
-      <span class="eyebrow">Gasthof &amp; Weinstube · Graz-Land, Steiermark</span>
-      <h1 class="reveal is-visible">Steirische Küche,<br><i>neu serviert.</i></h1>
-      <p class="hero-sub reveal is-visible" style="transition-delay:.15s">
+      <span class="eyebrow reveal" style="transition-delay:.05s">Gasthof &amp; Weinstube · Graz-Land, Steiermark</span>
+      <h1 class="reveal" style="transition-delay:.18s">Steirische Küche,<br><i>neu serviert.</i></h1>
+      <p class="hero-sub reveal" style="transition-delay:.36s">
         Seit vier Generationen kochen wir bodenständig, ehrlich und mit Zutaten aus der Region —
         vom Kürbiskernöl bis zum Wein aus dem eigenen Weingarten.
       </p>
-      <div class="hero-actions reveal is-visible" style="transition-delay:.3s">
+      <div class="hero-actions reveal" style="transition-delay:.54s">
         <a href="#reservieren" class="btn btn-primary">Tisch reservieren</a>
         <a href="#speisekarte" class="btn btn-ghost">Speisekarte ansehen</a>
       </div>
@@ -385,13 +398,17 @@
         <p>Saisonal, regional, und jeden Sonntag um einen Klassiker aus Großmutters Rezeptbuch ergänzt.</p>
       </div>
 
+      <input type="radio" name="speiseTab" id="tab-vorspeisen" class="menu-radio" checked>
+      <input type="radio" name="speiseTab" id="tab-hauptspeisen" class="menu-radio">
+      <input type="radio" name="speiseTab" id="tab-nachspeisen" class="menu-radio">
+
       <div class="menu-tabs reveal">
-        <button class="menu-tab active" data-target="vorspeisen">Vorspeisen</button>
-        <button class="menu-tab" data-target="hauptspeisen">Hauptspeisen</button>
-        <button class="menu-tab" data-target="nachspeisen">Nachspeisen</button>
+        <label class="menu-tab" for="tab-vorspeisen">Vorspeisen</label>
+        <label class="menu-tab" for="tab-hauptspeisen">Hauptspeisen</label>
+        <label class="menu-tab" for="tab-nachspeisen">Nachspeisen</label>
       </div>
 
-      <div class="menu-group active" id="vorspeisen">
+      <div class="menu-group" id="vorspeisen">
         <div class="menu-item"><span class="menu-item-name">Kürbiscremesuppe</span><span class="menu-item-price">€ 6,90</span><span class="menu-item-desc">Mit geröstetem Kürbiskernöl und Kernen aus der Weststeiermark.</span></div>
         <div class="menu-item"><span class="menu-item-name">Erdäpfelsalat mit Blunzen</span><span class="menu-item-price">€ 9,40</span><span class="menu-item-desc">Hausgemachte Blutwurst, warmer Kartoffelsalat, Kürbiskernöl.</span><span class="menu-item-tag">Hausrezept</span></div>
         <div class="menu-item"><span class="menu-item-name">Steirischer Käseteller</span><span class="menu-item-price">€ 11,50</span><span class="menu-item-desc">Auswahl regionaler Käse mit Birnenmarmelade und Nussbrot.</span></div>
@@ -508,18 +525,6 @@
   setTimeout(() => {
     document.querySelectorAll('.reveal:not(.is-visible)').forEach(el => el.classList.add('is-visible'));
   }, 2500);
-
-  // menu tabs
-  const tabs = document.querySelectorAll('.menu-tab');
-  const groups = document.querySelectorAll('.menu-group');
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      groups.forEach(g => g.classList.remove('active'));
-      tab.classList.add('active');
-      document.getElementById(tab.dataset.target).classList.add('active');
-    });
-  });
 
   // smooth in-page nav
   document.querySelectorAll('a[href^="#"]').forEach(a => {
