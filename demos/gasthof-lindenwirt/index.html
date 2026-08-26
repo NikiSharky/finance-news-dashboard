@@ -66,18 +66,22 @@
     color:var(--brass);
   }
 
-  /* ---------- reveal ---------- */
-  .reveal{
+  /* ---------- reveal ----------
+     Default state is fully visible so the page never depends on
+     JavaScript running (some file-preview contexts strip <script>).
+     Only when JS confirms it's active (html.js-reveal, set at load)
+     do elements start hidden and animate in on scroll. */
+  html.js-reveal .reveal{
     opacity:0;
     transform:translateY(28px);
     transition:opacity .9s cubic-bezier(.16,.8,.24,1), transform .9s cubic-bezier(.16,.8,.24,1);
   }
-  .reveal.is-visible{opacity:1; transform:translateY(0);}
+  html.js-reveal .reveal.is-visible{opacity:1; transform:translateY(0);}
   .reveal-stagger > *{transition-delay:calc(var(--i,0) * 90ms);}
 
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto;}
-    .reveal{opacity:1; transform:none; transition:none;}
+    html.js-reveal .reveal{opacity:1; transform:none; transition:none;}
     *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
   }
 
@@ -299,6 +303,7 @@
 </style>
 </head>
 <body>
+<script>document.documentElement.classList.add('js-reveal');</script>
 
 <header id="siteHeader">
   <a href="#top" class="brand">Lindenwirt <em>seit 1897</em></a>
@@ -498,6 +503,11 @@
   } else {
     revealEls.forEach(el => el.classList.add('is-visible'));
   }
+  // Safety net: if the observer never fires (constrained preview iframes,
+  // zero-height containers), don't leave content permanently invisible.
+  setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.is-visible)').forEach(el => el.classList.add('is-visible'));
+  }, 2500);
 
   // menu tabs
   const tabs = document.querySelectorAll('.menu-tab');
